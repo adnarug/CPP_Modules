@@ -6,13 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/21 15:12:18 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:30:19 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _fixpointValue(0){
+Fixed::Fixed() : _fixpointValue(0)
+{
 	std::cout<<"Default constructor called" << std::endl;
 }
 
@@ -22,13 +23,19 @@ Fixed::~Fixed() {
 
 Fixed::Fixed(int const num)
 {
-	this->_fixpointValue = num << this->numbFracBits;
+	std::cout<<"Int constructor called" << std::endl;
+	this->_fixpointValue = num << this->_numbFracBits;
+}
+
+Fixed::Fixed(float const num)
+{
+	std::cout<<"Float constructor called" << std::endl;
+	this->_fixpointValue = round(num * (double)( 1 << this->_numbFracBits));
 }
 
 
 int Fixed::getRawBits (void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (Fixed::_fixpointValue);
 }
 
@@ -41,7 +48,7 @@ Fixed::Fixed(Fixed const & src)
 
 Fixed&  Fixed::operator=(Fixed const & rhs)
 {
-	std::cout << "Coppy assignment operator called" << std::endl;	
+	std::cout << "Copy assignment operator called" << std::endl;	
 	if (this != &rhs)
 		this->_fixpointValue = rhs.getRawBits();
 	return *this;
@@ -49,23 +56,23 @@ Fixed&  Fixed::operator=(Fixed const & rhs)
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	Fixed::_fixpointValue = raw;
 }
 
-std::ostream & Fixed::operator<<(std::ostream & o, Fixed const & rhs);
+std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
 {
 	o << rhs.toFloat();
-	return ;
+	return (o);
 }
 
 float Fixed::toFloat(void) const
 {
-	return ;
+	float toFloat = (float) this->_fixpointValue / (float) (1 << this->_numbFracBits);
+	return (toFloat) ;
 }
 
 int Fixed::toInt(void) const
 {
-	int toInt = this->_fixpointValue
+	int toInt = this->_fixpointValue >> this->_numbFracBits;
 	return (toInt);
 }

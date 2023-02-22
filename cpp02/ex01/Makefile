@@ -19,9 +19,9 @@ obj :
 clean :
 	@rm -rf obj
 
-log:
-	@make
-	@./$(NAME) > my_log
+run : $(NAME)
+	@./$(NAME)
+
 
 fclean : clean
 	@rm -f $(NAME)

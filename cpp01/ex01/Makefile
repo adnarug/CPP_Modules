@@ -1,15 +1,15 @@
-NAME			= phonebook
+NAME			= zombie_horde
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= Phonebook.cpp Contact.cpp
+SRC_FILES		= Zombie.cpp zombieHorde.cpp main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
 	@$(CXX) $(CPPFLAGS) -o $@ $^ 
-	@echo "phonebook is compiled"
+	@echo "zombie horde is compiled"
 
 obj/%.o : %.cpp  obj
 	@$(CXX) $(CPPFLAGS) -c $< -o $@

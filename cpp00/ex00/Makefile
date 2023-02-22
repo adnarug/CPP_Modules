@@ -1,32 +1,32 @@
-NAME			= zombies
+NAME			= megaphone
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
-OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
+SRC_FILES		= megaphone.cpp
+OBJ_FILES		= $(addprefix $(OBJ), $(notdir $(SRC_FILES:.cpp=.o)))
 
-all : $(NAME)
+all: $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	@$(CXX) $(CPPFLAGS) -o $@ $^ 
-	@echo "zombies is compiled"
+	@$(CXX) $(CPPFLAGS) -o $@ $^
 
-obj/%.o : %.cpp  obj
-	@$(CXX) $(CPPFLAGS) -c $< -o $@
+$(OBJ_FILES) : $(SRC_FILES) | obj_dir
+	@$(CXX) $(CPPFLAGS) -c $? -o $(OBJ)$(notdir $@)
 
-obj :
-	@mkdir obj
-
-clean :
-	@rm -rf obj
+re: clean all
 
 run:
 	@make
 	@./$(NAME)
 
-fclean : clean
+obj_dir:
+	@mkdir -p $(OBJ)
+
+clean:
+	@rm -f $(OBJ_FILES)
+	@rm -rf $(OBJ)
+
+fclean: clean
 	@rm -f $(NAME)
 
-re : clean all
-
-.PHONY : all clean fclean re
+.PHONY: all re clean fclean

@@ -1,14 +1,15 @@
-NAME			= account
+NAME			= brain
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= Account.cpp tests.cpp
+SRC_FILES		=  main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
 	@$(CXX) $(CPPFLAGS) -o $@ $^ 
+	@echo "brain is compiled"
 
 obj/%.o : %.cpp  obj
 	@$(CXX) $(CPPFLAGS) -c $< -o $@
@@ -19,13 +20,12 @@ obj :
 clean :
 	@rm -rf obj
 
-log:
+run:
 	@make
-	@./$(NAME) > my_log
+	@./$(NAME)
 
 fclean : clean
 	@rm -f $(NAME)
-	@rm -f my_log
 
 re : clean all
 
