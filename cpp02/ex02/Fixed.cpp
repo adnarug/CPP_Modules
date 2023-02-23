@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/22 14:46:12 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:42:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,24 @@
  *------------------------------------------------------------------------**/
 Fixed::Fixed() : _fixpointValue(0)
 {
-	std::cout<<"Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed() 
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(int const num)
 {
-	std::cout<<"Int constructor called" << std::endl;
 	this->_fixpointValue = num << this->_numbFracBits;
 }
 
 Fixed::Fixed(float const num)
 {
-	std::cout<<"Float constructor called" << std::endl;
-	this->_fixpointValue = round(num * (double)( 1 << this->_numbFracBits));
+	this->_fixpointValue = roundf(num * (double)( 1 << this->_numbFracBits));
 }
 
 Fixed::Fixed(Fixed const & src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;
 }
@@ -48,7 +43,6 @@ Fixed::Fixed(Fixed const & src)
 int Fixed::getRawBits (void) const
 {
 	return (Fixed::_fixpointValue);
-
 }
 
 void Fixed::setRawBits(int const raw)
@@ -56,11 +50,10 @@ void Fixed::setRawBits(int const raw)
 	Fixed::_fixpointValue = raw;
 }
 /**========================================================================
- *                           Operators overloads
+ *                           Operators overloads -- From Ex00
  *========================================================================**/
 Fixed&  Fixed::operator=(Fixed const & rhs)
 {
-	std::cout << "Copy assignment operator called" << std::endl;	
 	if (this != &rhs)
 		this->_fixpointValue = rhs.getRawBits();
 	return *this;
@@ -71,7 +64,9 @@ std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
 	o << rhs.toFloat();
 	return (o);
 }
-
+/**========================================================================
+ *                           Relational operators
+ *========================================================================**/
 bool Fixed::operator<(Fixed const & rhs)
 {
 	return (this->getRawBits() < rhs.getRawBits());
@@ -100,6 +95,101 @@ bool Fixed::operator==(Fixed const & rhs)
 bool Fixed::operator!=(Fixed const & rhs)
 {
 	return (this->getRawBits() == rhs.getRawBits());
+}
+/**========================================================================
+ *                           Arithmetic operators
+ *========================================================================**/
+
+Fixed Fixed::operator+(Fixed const & rhs)
+{
+	Fixed result;
+	result.setRawBits(this->getRawBits() + rhs.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator-(Fixed const & rhs)
+{
+	Fixed result;
+	result.setRawBits(this->getRawBits() - rhs.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator*(Fixed const & rhs)
+{
+	Fixed result;
+	result.setRawBits(this->getRawBits() * rhs.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator/(Fixed const & rhs)
+{
+	Fixed result;
+	result.setRawBits(this->getRawBits() / rhs.getRawBits());
+	return (result);
+}
+
+/**========================================================================
+ *                           Incrementors / Decrementors
+ *========================================================================**/
+
+Fixed Fixed::operator++()
+{
+	++this->_fixpointValue;
+	return (*this);
+}
+
+Fixed Fixed::operator--()
+{
+	--this->_fixpointValue;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	++this->_fixpointValue;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	--this->_fixpointValue;
+	return (*this);
+}
+
+/**========================================================================
+ *                           Max and min functions
+ *========================================================================**/
+
+Fixed & Fixed::min (Fixed & num1, Fixed & num2)
+{
+	if (num1 < num2)
+		return (num1);
+	else
+		return (num2);
+}
+
+const Fixed & Fixed::min (const Fixed & num1, const Fixed & num2)
+{
+	if (num1.getRawBits() < num2.getRawBits())
+		return (num1);
+	else
+		return (num2);
+}
+
+Fixed & Fixed::max (Fixed & num1, Fixed & num2)
+{
+	if (num1 > num2)
+		return (num1);
+	else
+		return (num2);
+	
+}
+const Fixed & Fixed::max (const Fixed & num1, const Fixed & num2)
+{
+	if (num1.getRawBits() > num2.getRawBits())
+		return (num1);
+	else
+		return (num2);
 }
 /**========================================================================
  *                           Other functions

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/22 11:30:19 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:42:16 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ Fixed::Fixed(int const num)
 Fixed::Fixed(float const num)
 {
 	std::cout<<"Float constructor called" << std::endl;
-	this->_fixpointValue = round(num * (double)( 1 << this->_numbFracBits));
+	this->_fixpointValue = roundf(num * (double)( 1 << this->_numbFracBits));
 }
-
 
 int Fixed::getRawBits (void) const
 {

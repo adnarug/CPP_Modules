@@ -1,24 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/24 17:43:09 by kanykei           #+#    #+#             */
+/*   Updated: 2023/02/23 09:08:16 by pguranda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
-int main() {
-	Fixed	a (2);
-	Fixed const b(42.42f);
-	// Fixed  const b( Fixed ( 5.05f ) * Fixed( 2 ) );
+int main( void ) {
+	Fixed a;
+	Fixed b( 5.05f );
+	Fixed c( 2 );
 
-	if (a > b)
-		std::cout << "a is bigger" << std::endl;
-	else if (a < b)
-		std::cout << "b is bigger" << std::endl;
-	else
-		std::cout << "a and b are equal" << std::endl;
-	// std::cout<<a<<std::endl;
-	// std::cout<<++a<<std::endl;
-	// std::cout<<a<<std::endl;
-	// std::cout<<a++<<std::endl;
-	// std::cout<<a<<std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "++a = " << ++a << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "a++ = " << a++ << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "--a = " << --a << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "a-- = " << a-- << std::endl;
+	std::cout << "a = " << a << std::endl;
 
-	// std::cout<<b<<std::endl;
-	// std::cout<<Fixed::max( a, b )<<std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "c = " << c << std::endl;
 
+	std::cout << "b + c = " << Fixed( b + c ) << std::endl;
+	std::cout << "b - c = " << Fixed( b - c ) << std::endl;
+	std::cout << "c - b = " << Fixed( c - b ) << std::endl;
+	std::cout << "b * c = " << Fixed( b * c ) << std::endl;
+	std::cout << "b / c = " << Fixed( b / c ) << std::endl;
+	std::cout << "c / b = " << Fixed( c / b ) << std::endl;
+
+	std::cout << "max(b, c) = " << Fixed::max(b, c) << std::endl;
+	std::cout << "min(b, c) = " << Fixed::min(b, c) << std::endl;
 	return 0;
 }
