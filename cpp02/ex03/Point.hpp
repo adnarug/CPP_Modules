@@ -17,20 +17,33 @@ class Point
 	Point (void);
 	Point (Point const & src);
 	Point (const float x, const float y);
+	Point (int const x, int const y);
+	Point(Fixed const& x, Fixed const& y);
 	~Point (void);
+
+	// 	//Comparison operators
+	// bool operator>(Point const & rhs);
+	// bool operator<(Pint const & rhs);
+	// bool operator>=(Point const & rhs);
+	// bool operator<=(Point const & rhs);
+	// bool operator==(Point const & rhs);
+	
+	Point operator*(Point const & rhs) const;
+	Point operator-(Point const & rhs) const ;
+	Point operator+(Point const & rhs) const ;
+	Point operator=(Point const & rhs) const;
+	Point operator/(Point const & rhs) const;
+
+
 	Fixed getX() const;
 	Fixed getY() const;
-	void setX(Point const & x);
-	void setY(Point const & y);
+	void setX(Fixed const & x);
+	void setY(Fixed const & y);
 
-	Point operator*(Point const & rhs);
-	Point operator-(Point const & rhs);
-	Point operator+(Point const & rhs);
-	Point operator=(Point const & rhs);
 
 	private:
-	const Fixed _x;
-	const Fixed _y;
+	Fixed _x;
+	Fixed _y;
 };
 
 	bool bsp( Point const a, Point const b, Point const c, Point const point);

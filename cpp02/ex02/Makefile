@@ -24,6 +24,7 @@ log:
 	@./$(NAME) > my_log
 
 run : 
+	@make
 	@./$(NAME)
 
 fclean : clean

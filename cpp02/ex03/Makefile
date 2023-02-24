@@ -1,8 +1,8 @@
 NAME			= bsp
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		=  Fixed.cpp main.cpp Point.cpp bsp.cc
+CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD -fsanitize=address
+SRC_FILES		=  Fixed.cpp main.cpp Point.cpp bsp.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)

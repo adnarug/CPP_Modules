@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/23 09:42:09 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:11:48 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Fixed::Fixed(int const num)
 
 Fixed::Fixed(float const num)
 {
-	this->_fixpointValue = roundf(num * (double)( 1 << this->_numbFracBits));
+	this->_fixpointValue = roundf(num * (float)( 1 << this->_numbFracBits));
 }
 
 Fixed::Fixed(Fixed const & src)
@@ -117,7 +117,7 @@ Fixed Fixed::operator-(Fixed const & rhs)
 Fixed Fixed::operator*(Fixed const & rhs)
 {
 	Fixed result;
-	result.setRawBits(this->getRawBits() * rhs.getRawBits());
+	result.setRawBits(this->getRawBits() * rhs.getRawBits() >> this->_numbFracBits);
 	return (result);
 }
 
@@ -134,27 +134,30 @@ Fixed Fixed::operator/(Fixed const & rhs)
 
 Fixed Fixed::operator++()
 {
-	++this->_fixpointValue;
+	this->_fixpointValue++;
 	return (*this);
 }
 
 Fixed Fixed::operator--()
 {
-	--this->_fixpointValue;
+	this->_fixpointValue--;
 	return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
-	++this->_fixpointValue;
-	return (*this);
+	Fixed result = *this;
+	++*this;
+	return result;
 }
 
 Fixed Fixed::operator--(int)
 {
-	--this->_fixpointValue;
-	return (*this);
+	Fixed result = *this;
+	--*this;
+	return result;
 }
+
 
 /**========================================================================
  *                           Max and min functions
