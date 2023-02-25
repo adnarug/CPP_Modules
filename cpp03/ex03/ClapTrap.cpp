@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:21:50 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/25 13:46:06 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 00:09:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void ClapTrap::attack(const std::string &target)
 	this->_energy -= 1;
 }
 
-//TODO: what if dmg is > than hp
+
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hp <= 0)

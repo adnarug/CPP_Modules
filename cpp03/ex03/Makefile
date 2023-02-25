@@ -1,7 +1,7 @@
 NAME			= clap_trap
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
+CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD -Wshadow
 SRC_FILES		= ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 

@@ -6,16 +6,18 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : virtual public FragTrap,  virtual public ScavTrap
+class DiamondTrap : public virtual FragTrap,  public virtual ScavTrap
 {
 	public:
 		DiamondTrap 	(void);
 		DiamondTrap 	(std::string name);
 		~DiamondTrap	(void);
 		DiamondTrap		(DiamondTrap const &src);
-		void		whoAmI(void) ;
+		using			ScavTrap::attack;
+		void			whoAmI(void);
+		void 			setName(std::string const name);
 	private:
-		std::string _name;
+		std::string		_name;
 };
 
 #endif
