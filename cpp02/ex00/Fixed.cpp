@@ -6,13 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/21 14:09:35 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:02:21 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _fixpointValue(0){
+Fixed::Fixed() : _fixpointValue(0)
+{
 	std::cout<<"Default constructor called" << std::endl;
 }
 

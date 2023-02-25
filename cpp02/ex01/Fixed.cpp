@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/23 09:42:16 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:14:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,21 @@ Fixed::Fixed(float const num)
 	this->_fixpointValue = roundf(num * (double)( 1 << this->_numbFracBits));
 }
 
-int Fixed::getRawBits (void) const
-{
-	return (Fixed::_fixpointValue);
-}
-
 Fixed::Fixed(Fixed const & src)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;
+}
+
+int Fixed::getRawBits (void) const
+{
+	return (Fixed::_fixpointValue);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	Fixed::_fixpointValue = raw;
 }
 
 Fixed&  Fixed::operator=(Fixed const & rhs)
@@ -51,11 +56,6 @@ Fixed&  Fixed::operator=(Fixed const & rhs)
 	if (this != &rhs)
 		this->_fixpointValue = rhs.getRawBits();
 	return *this;
-}
-
-void Fixed::setRawBits(int const raw)
-{
-	Fixed::_fixpointValue = raw;
 }
 
 std::ostream & operator<<(std::ostream & o, Fixed const & rhs)

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:21:50 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/24 16:55:13 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:57:31 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 ClapTrap::ClapTrap() : _name("NoName"), _hp(10), _energy(10), _atck(0)
 {
-	std::cout << "Default constructor for NoNamer is called." << std::endl;
+	std::cout << "Default constructor for" << getName() << " is called." << std::endl;
+	return;
+}
+
+ClapTrap::ClapTrap(std::string name, int hp, int energy, int atck) : _name(name), _hp(hp), _energy(energy), _atck(atck)
+{
+	std::cout << "Constructor for " <<_name << " is called." << std::endl;
 	return;
 }
 
@@ -33,6 +39,11 @@ ClapTrap::ClapTrap (ClapTrap const &src) : _name(src._name), _hp(src._hp), _ener
 {
 	std::cout << "Copy constructor is called." << std::endl;
 	return ;
+}
+
+std::string ClapTrap::getName(void) const
+{
+	return _name;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &  rhs)
@@ -59,7 +70,7 @@ void ClapTrap::attack(const std::string &target)
 		std::cout << this->_name << " has no energy to attack." << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->_name << " attacks " << target << \
+	std::cout << this->_name << " attacks " << target << \
 		", causing " << this->_atck << " points of damage!" << std::endl;
 	this->_energy -= 1;
 }
@@ -73,10 +84,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return ;
 	}
 
-	std::cout << "ClapTrap " << this->_name << " takes " << amount << " points of damage!" << std::endl;
+	std::cout << this->_name << " takes " << amount << " points of damage!" << std::endl;
 	this->_hp -= amount;
 	if (this->_hp <= 0)
-		std::cout << "ClapTrap " << this->_name << " was killed."<< std::endl;
+		std::cout << this->_name << " was killed."<< std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -98,6 +109,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	else
 		this->_hp += amount;
-	std::cout << "ClapTrap " << this->_name << " repaired itself by " << amount << std::endl;
+	std::cout << this->_name << " repaired itself by " << amount << std::endl;
 	this->_energy -= 1;
 }

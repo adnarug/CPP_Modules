@@ -1,8 +1,6 @@
-#ifndef _HPP
-# define _HPP
-
+#ifndef FIXED_HPP
+# define FIXED_HPP
 # include <iostream>
-# include <string>
 
 class Fixed 
 {
@@ -10,9 +8,9 @@ class Fixed
 		Fixed();
 		~Fixed();
 		Fixed (Fixed const & src); 
-		Fixed& operator=(Fixed const & rhs);
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
+		Fixed& 				operator=(Fixed const & rhs);
+		int					getRawBits(void) const;
+		void				setRawBits(int const raw);
 	private:
 		int					_fixpointValue;
 		static const int	numbFracBits = 8;

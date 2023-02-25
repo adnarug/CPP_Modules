@@ -19,17 +19,12 @@ obj :
 clean :
 	@rm -rf obj
 
-log:
-	@make
-	@./$(NAME) > my_log
-
 run : 
 	@make
 	@./$(NAME)
 
 fclean : clean
 	@rm -f $(NAME)
-	@rm -f my_log
 
 re : clean all
 

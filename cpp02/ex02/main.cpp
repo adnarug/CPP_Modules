@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:13:58 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/23 10:14:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:20:14 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main( void ) {
 	{
+	std::cout << "-----my tests:--------------" << std::endl;
 	Fixed a;
 	Fixed b( 5.05f );
 	Fixed c( 2 );
@@ -38,7 +39,7 @@ int main( void ) {
 	std::cout << "max(b, c) = " << Fixed::max(b, c) << std::endl;
 	std::cout << "min(b, c) = " << Fixed::min(b, c) << std::endl;
 	}
-	std::cout << "-------------------" << std::endl;
+	std::cout << "-----main tests:--------------" << std::endl;
 	{
 	Fixed a;
 	Fixed const b(Fixed(5.05f) * Fixed(2));

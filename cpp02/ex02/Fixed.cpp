@@ -6,30 +6,35 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:18:07 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/23 10:11:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:34:15 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
 /**------------------------------------------------------------------------
  *                           Co/Deconstructors
  *------------------------------------------------------------------------**/
 Fixed::Fixed() : _fixpointValue(0)
 {
+	return ;
 }
 
 Fixed::~Fixed() 
 {
+	return ;
 }
 
 Fixed::Fixed(int const num)
 {
 	this->_fixpointValue = num << this->_numbFracBits;
+	return ;
 }
 
 Fixed::Fixed(float const num)
 {
 	this->_fixpointValue = roundf(num * (float)( 1 << this->_numbFracBits));
+	return ;
 }
 
 Fixed::Fixed(Fixed const & src)
@@ -50,7 +55,7 @@ void Fixed::setRawBits(int const raw)
 	Fixed::_fixpointValue = raw;
 }
 /**========================================================================
- *                           Operators overloads -- From Ex00
+ *                           Operators overloads 
  *========================================================================**/
 Fixed&  Fixed::operator=(Fixed const & rhs)
 {
@@ -132,13 +137,13 @@ Fixed Fixed::operator/(Fixed const & rhs)
  *                           Incrementors / Decrementors
  *========================================================================**/
 
-Fixed Fixed::operator++()
+Fixed& Fixed::operator++()
 {
 	this->_fixpointValue++;
 	return (*this);
 }
 
-Fixed Fixed::operator--()
+Fixed& Fixed::operator--()
 {
 	this->_fixpointValue--;
 	return (*this);

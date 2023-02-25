@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:06:30 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/21 11:06:37 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:45:59 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #include <iostream>
 
 int main(void) {
-    Fixed a;
-    Fixed b(a);
-    Fixed c;
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
 
-    c = b;
+	c = b;
 
-    std::cout << a.getRawBits() << std::endl;
-    std::cout << b.getRawBits() << std::endl;
-    std::cout << c.getRawBits() << std::endl;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
 
-    return 0;
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:26:34 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/24 10:43:42 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:27:57 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,4 @@ Point Point::operator=(Point const & rhs) const
 	result.setX(this->getX() * rhs.getX());
 	result.setY(this->getY() * rhs.getY());
 	return *this;
-}
-
-Point Point::operator/(Point const & rhs) const
-{
-	Point result;
-	result.setX(this->getX() / rhs.getX());
-	result.setY(this->getY() / rhs.getY());
-	return (result);
 }
