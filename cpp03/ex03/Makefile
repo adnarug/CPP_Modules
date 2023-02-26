@@ -1,4 +1,4 @@
-NAME			= clap_trap
+NAME			= diamond_trap
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD -Wshadow

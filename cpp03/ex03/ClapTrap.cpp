@@ -5,26 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 15:21:50 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/26 00:09:05 by pguranda         ###   ########.fr       */
+/*   Created: 2023/02/26 10:29:21 by pguranda          #+#    #+#             */
+/*   Updated: 2023/02/26 11:16:43 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name("NoName"), _hp(10), _energy(10), _atck(0)
+//	De/Constructors
+ClapTrap::ClapTrap() : _name("NoName"), _hp(100), _energy(100), _atck(0)
 {
-	std::cout << "Default constructor for" << getName() << " is called." << std::endl;
+	std::cout << "Default constructor for ClapTrap: NoNamer is called." << std::endl;
 	return;
 }
 
-ClapTrap::ClapTrap(std::string name, int hp, int energy, int atck) : _name(name), _hp(hp), _energy(energy), _atck(atck)
-{
-	std::cout << "Constructor for " <<_name << " is called." << std::endl;
-	return;
-}
-
-ClapTrap::ClapTrap(std::string const name) : _name(name), _hp(10), _energy(10), _atck(0)
+ClapTrap::ClapTrap(std::string const &name) : _name(name), _hp(100), _energy(100), _atck(0)
 {
 	std::cout << "Constructor for " << name << " is called." << std::endl;
 	return;
@@ -32,28 +29,28 @@ ClapTrap::ClapTrap(std::string const name) : _name(name), _hp(10), _energy(10), 
 
 ClapTrap::~ClapTrap ()
 {
-	std::cout << "Deconstructor for " << this->_name <<" is called." << std::endl;
+	std::cout << "Deconstructor for " << _name <<" is called." << std::endl;
 }
 
 ClapTrap::ClapTrap (ClapTrap const &src) : _name(src._name), _hp(src._hp), _energy(src._energy), _atck(src._atck)
 {
-	std::cout << "Copy constructor is called." << std::endl;
+	std::cout << "Copy constructor for ClapTrap is called." << std::endl;
 	return ;
 }
 
-
+// Assignment operator overload
 ClapTrap &ClapTrap::operator=(ClapTrap const &  rhs)
 {
-	if (this != &rhs)
-	{
-		_name = rhs._name;
-		_hp = rhs._hp;
-		_energy = rhs._energy;
-		_atck = rhs._atck;
-	}
+	if (this == &rhs)
+		return (*this);
+	_name = rhs._name;
+	_hp = rhs._hp;
+	_energy = rhs._energy;
+	_atck = rhs._atck;
 	return (*this);
 }
 
+//Core functions
 void ClapTrap::attack(const std::string &target)
 {
 	if (this->_hp <= 0)
@@ -71,7 +68,6 @@ void ClapTrap::attack(const std::string &target)
 	this->_energy -= 1;
 }
 
-
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hp <= 0)
@@ -79,7 +75,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout << this->_name << " has no hp." << std::endl;
 		return ;
 	}
-
 	std::cout << this->_name << " takes " << amount << " points of damage!" << std::endl;
 	this->_hp -= amount;
 	if (this->_hp <= 0)
@@ -93,25 +88,29 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << this->_name << " has no hp. Nothing left to repair." << std::endl;
 		return ;
 	}
+	if (this->_hp >= 100)
+	{
+		std::cout << this->_name << " full hp. No need for repair." << std::endl;
+		return ;
+	}
 	if (this->_energy <= 0)
 	{
 		std::cout << this->_name << " has no energy left for the repairs." << std::endl;
 		return ;
 	}
-	if (_hp + amount > 10)
+	if (_hp + amount > 100)
 	{
-		amount = 10 - this->_hp;
-		this->_hp = 10;
+		std::cout << "Limiting repair to the maximum HP.. ";
+		amount = 100 - this->_hp;
+		this->_hp = 100;
 	}
 	else
 		this->_hp += amount;
-	std::cout << this->_name << " repaired itself by " << amount << std::endl;
+	std::cout << "ClapTrap " << this->_name << " repaired itself by " << amount << std::endl;
 	this->_energy -= 1;
 }
 
 //Getters and Setters
-
-
 int			ClapTrap::getHP(void) const
 {
 	return _hp;

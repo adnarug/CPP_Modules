@@ -24,7 +24,7 @@ class ClapTrap
 		void		setHP(unsigned int const amount);
 		void 		setEnergy(unsigned int const amount);
 		void		setAtck(unsigned int const amount);
-	private:
+	protected:
 		std::string 	_name;
 		int				_hp;
 		int				_energy;

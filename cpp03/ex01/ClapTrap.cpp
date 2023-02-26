@@ -86,12 +86,13 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	if (_hp + amount > 100)
 	{
+		std::cout << "Limiting repair to the maximum HP.. ";
 		amount = 100 - this->_hp;
 		this->_hp = 100;
 	}
 	else
 		this->_hp += amount;
-	std::cout << "ClapTrap " << this->_name << " repaired itself by " << amount << std::endl;
+	std::cout << this->_name << " repaired itself by " << amount << std::endl;
 	this->_energy -= 1;
 }
 

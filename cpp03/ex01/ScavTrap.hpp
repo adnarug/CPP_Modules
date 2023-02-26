@@ -4,9 +4,9 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-#define MAX_HP 100
-#define MAX_ENERGY 50
-#define ATCK 20
+#define MAX_HP_SC 100
+#define MAX_ENERGY_SC 50
+#define ATCK_SC 20
 
 
 class ScavTrap : public ClapTrap
@@ -18,7 +18,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap	(ScavTrap const &src);
 		ScavTrap	&operator=(ScavTrap const &rhs);
 		void		callGuardGate(void) ;
-	private:
+	protected:
 		void		guardGate (void);
 
 };

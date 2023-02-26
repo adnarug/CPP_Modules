@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:13:04 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/25 23:56:26 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:20:11 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int main (void)
 
 	Clap.attack("Handsome Jack");
 	Clap.takeDamage(10);
-	
 	Clappy.attack("Sir Hammerlock");
 	Clappy.takeDamage(9);
-	Clappy.beRepaired(10);
-	
+	Clappy.beRepaired(2);
 	Chatty.attack("Tiny Tina");
-	
+
+	std::cout << "***************Deconstruction Chain ***************" << std::endl;
 	return (0);
 }

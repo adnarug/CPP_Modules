@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:13:04 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/25 12:46:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:41:56 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 
 int main (void)
 {
-	ClapTrap Clappy("Clappy");
-	ScavTrap Scavvy("Scavvy");
-	FragTrap Fraggy ("Fraggy");
+	std::cout << "***************Construction Chain ***************" << std::endl;
+	FragTrap Fraggy("Fraggy");
+	FragTrap Fraggy2;
 
-	Clappy.attack("Sir Hammerlock");
-	Clappy.takeDamage(9);
-	Clappy.beRepaired(10);
-
-	Scavvy.callGuardGate();
-	Scavvy.attack("Jack");
+	std::cout << "***************Executing Functions***************" << std::endl;
 
 	Fraggy.callHighFives();
-	Fraggy.takeDamage(10);
-
+	Fraggy2.takeDamage(10);
+	Fraggy2.beRepaired(10);
+	Fraggy2.attack("Boras Jehnson");
+	
+	std::cout << "***************Deconstruction Chain ***************" << std::endl;
 	return (0);
 }

@@ -2,9 +2,9 @@
 #define CLAPTRAP_HPP
 
 #include <iostream>
-#define MAX_HP 10
-#define MAX_ENERGY 10
-#define ATCK 0
+#define MAX_HP_CL 10
+#define MAX_ENERGY_CL 10
+#define ATCK_CL 0
 
 class ClapTrap
 {

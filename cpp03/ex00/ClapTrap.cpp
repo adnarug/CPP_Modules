@@ -6,20 +6,20 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:21:50 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/26 00:24:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:40:24 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 //	De/Constructors
-ClapTrap::ClapTrap() : _name("NoName"), _hp(MAX_HP), _energy(MAX_ENERGY), _atck(ATCK)
+ClapTrap::ClapTrap() : _name("NoName"), _hp(MAX_HP_CL), _energy(MAX_ENERGY_CL), _atck(ATCK_CL)
 {
 	std::cout << "Default constructor for ClapTrap: NoNamer is called." << std::endl;
 	return;
 }
 
-ClapTrap::ClapTrap(std::string const &name) : _name(name), _hp(MAX_HP), _energy(MAX_ENERGY), _atck(ATCK)
+ClapTrap::ClapTrap(std::string const &name) : _name(name), _hp(MAX_HP_CL), _energy(MAX_ENERGY_CL), _atck(ATCK_CL)
 {
 	std::cout << "Constructor for " << name << " is called." << std::endl;
 	return;
@@ -61,7 +61,7 @@ void ClapTrap::attack(const std::string &target)
 		std::cout << this->_name << " has no energy to attack." << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->_name << " attacks " << target << \
+	std::cout <<"ClapTrap " << this->_name << " attacks " << target << \
 		", causing " << this->_atck << " points of damage!" << std::endl;
 	this->_energy -= 1;
 }
@@ -91,14 +91,15 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << this->_name << " has no energy left for the repairs." << std::endl;
 		return ;
 	}
-	if (_hp + amount > MAX_HP)
+	if (_hp + amount > MAX_HP_CL)
 	{
-		amount = MAX_HP - this->_hp;
-		this->_hp = MAX_HP;
+		std::cout << "Limiting repair to the maximum HP.. ";
+		amount = MAX_HP_CL - this->_hp;
+		this->_hp = MAX_HP_CL;
 	}
 	else
 		this->_hp += amount;
-	std::cout << "ClapTrap " << this->_name << " repaired itself by " << amount << std::endl;
+	std::cout << "ClapTrap " << this->_name << " repaired itself by " << amount <<" points."<<std::endl;
 	this->_energy -= 1;
 }
 

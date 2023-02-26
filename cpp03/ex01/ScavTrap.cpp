@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 09:48:19 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/26 00:36:44 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:38:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	setHP(100);
-	setEnergy(50);
-	setAtck(20);
+	setHP(MAX_HP_SC);
+	setEnergy(MAX_ENERGY_SC);
+	setAtck(ATCK_SC);
 	std::cout << "Default constructor for ScavTrap: NoNamer is called." << std::endl;
 	return;
 }
@@ -34,7 +34,7 @@ ScavTrap::~ScavTrap ()
 {
 	std::cout << "Deconstructor for ScavTrap: " << getName() <<" is called." << std::endl;
 }
-//TODO: Copy constructor
+
 ScavTrap::ScavTrap (ScavTrap const &src) : ClapTrap(src)
 {
 	std::cout << "Copy constructor for ScavTrap: "<< getName() << " is called." << std::endl;
