@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal () : _type("NoName_Animal")
+WrongAnimal::WrongAnimal () : _type("NoName_WrongAnimal")
 {
-	std::cout << "Deafult constructor for Animal is called" << std::endl;
+	std::cout << "Deafult constructor for WrongAnimal is called" << std::endl;
 	return; 
 }
 
-Animal::Animal (Animal const &src)
+WrongAnimal::WrongAnimal (WrongAnimal const &src)
 {
-	std::cout << "Copy constructor for Animal is called" << std::endl;
+	std::cout << "Copy constructor for WrongAnimal is called" << std::endl;
 	*this = src;
 	return ;
 }
 
-Animal& Animal::operator=(Animal const& rhs)
+WrongAnimal& WrongAnimal::operator=(WrongAnimal const& rhs)
 {
 	if (this == &rhs)
 		return (*this);
@@ -33,24 +33,24 @@ Animal& Animal::operator=(Animal const& rhs)
 	return (*this);
 }
 
-std::string Animal::getType() const
+std::string WrongAnimal::getType() const
 {
 	return (this->_type);
 }
 
-void Animal::setType(std::string const & type) 
+void WrongAnimal::setType(std::string const & type) 
 {
 	_type = type;
 	return;
 }
 
-void Animal::makeSound(void) const
+void WrongAnimal::makeSound(void) const
 {
-	std::cout << "Generic animalistic sound: Raw-mewo" << std::endl;
+	std::cout << "Generic WrongAnimalistic sound: Hmm.. I am a wrong Animal, I should not speak" << std::endl;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Deafult de-constructor for Animal is called" << std::endl;
+	std::cout << "Deafult de-constructor for WrongAnimal is called" << std::endl;
 	return ;
 }

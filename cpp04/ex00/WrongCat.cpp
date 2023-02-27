@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongWrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:26:25 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/27 14:23:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:13:50 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void) : Animal()
+WrongCat::WrongCat(void) : WrongAnimal()
 {
-	setType("Cat");
-	std::cout << "Deafult constructor for Cat is called" << std::endl;
+	setType("WrongCat");
+	std::cout << "Deafult constructor for WrongCat is called" << std::endl;
 	return; 
 }
 
-Cat::Cat(Cat const &src)
+WrongCat::WrongCat(WrongCat const &src)
 {
-	setType("Cat");
-	std::cout << "Copy constructor for Cat is called" << std::endl;
+	setType("WrongCat");
+	std::cout << "Copy constructor for WrongCat is called" << std::endl;
 	*this = src;
 	return ;
 }
 
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	std::cout << "Deafult de-constructor for Cat is called" << std::endl;
+	std::cout << "Deafult de-constructor for WrongCat is called" << std::endl;
 	return ;
 }
 
-Cat& Cat::operator=(Cat const& rhs)
+WrongCat& WrongCat::operator=(WrongCat const& rhs)
 {
 	if (this == &rhs)
 		return (*this);
@@ -41,7 +41,7 @@ Cat& Cat::operator=(Cat const& rhs)
 	return (*this);
 }
 
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-	std::cout << "Cat: Meow-myay" << std::endl;
+	std::cout << "WrongCat: I speak human tongues..ehm, maybe I am Wrong?" << std::endl;
 }
