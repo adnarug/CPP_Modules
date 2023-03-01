@@ -5,6 +5,8 @@
 # include <string>
 # include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 
@@ -16,7 +18,7 @@ class AMateria
 		AMateria &		operator=( AMateria const & rhs );
 		AMateria (std::string const & type);
 		std::string const & getType() const; //Returns the materia type
-		void setType(std::string const &type);
+		void setType(std::string const & type);
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 	protected:

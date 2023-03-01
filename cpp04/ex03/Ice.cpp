@@ -10,6 +10,7 @@ Ice::Ice() : AMateria("ice")
 
 Ice::Ice( const Ice & src )
 {
+	(void)	src;
 }
 
 
@@ -28,17 +29,11 @@ Ice::~Ice()
 
 Ice &				Ice::operator=( Ice const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->setType(rhs.getType());
+	}
 	return *this;
-}
-
-std::ostream &			operator<<( std::ostream & o, Ice const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
 }
 
 

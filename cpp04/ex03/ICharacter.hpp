@@ -3,25 +3,31 @@
 
 # include <iostream>
 # include <string>
+#include "AMateria.hpp"
 
-class ICharacter
-{
+class AMateria;
 
-	public:
+class ICharacter {
+ public:
+  /* constructor */
+  ICharacter();
 
-		ICharacter();
-		ICharacter( ICharacter const & src );
-		~ICharacter();
+  /* copy constructor */
+  ICharacter(ICharacter const& src);
 
-		ICharacter &		operator=( ICharacter const & rhs );
+  /* copy assignment operator */
+  ICharacter& operator=(ICharacter const& src);
 
-	public:
-		virtual ~ICharacter() {}
-		virtual std::string const & getName() const = 0; virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
+  /* destructor */
+  virtual ~ICharacter();
+
+  /* getter */
+  virtual std::string const& getName() const = 0;
+
+  /* public methods */
+  virtual void equip(AMateria* m) = 0;
+  virtual void unequip(int idx) = 0;
+  virtual void use(int idx, ICharacter& target) = 0;
 };
-
-std::ostream &			operator<<( std::ostream & o, ICharacter const & i );
 
 #endif /* ****************************************************** ICHARACTER_H */

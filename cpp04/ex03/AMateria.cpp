@@ -10,8 +10,13 @@ AMateria::AMateria()
 
 AMateria::AMateria( const AMateria & src )
 {
+	*this = src;
 }
 
+AMateria::AMateria(std::string const & type)
+{
+	_type = type;
+}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -28,37 +33,35 @@ AMateria::~AMateria()
 
 AMateria &				AMateria::operator=( AMateria const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->_type = rhs.getType();
+	}
 	return *this;
 }
-
-std::ostream &			operator<<( std::ostream & o, AMateria const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+void use (ICharacter& target)
+{
+	(void)target;
+}
 
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-void setType(std::string const &type)
-{
-	_type = type;
-}
-
-std::string const & getType() const
+std::string const & AMateria::getType() const
 {
 	return _type;
+}
+
+void AMateria::setType(std::string const & type)
+{
+	_type = type;
 }
 
 /* ************************************************************************** */
