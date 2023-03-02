@@ -42,6 +42,10 @@ Cure &				Cure::operator=( Cure const & rhs )
 */
 
 
+AMateria* Cure::clone() const 
+{
+	return new Cure(*this);
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

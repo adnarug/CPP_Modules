@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 # include "AMateria.hpp"
-
+# include "ICharacter.hpp"
 class Cure : public AMateria
 {
 
@@ -15,6 +15,7 @@ class Cure : public AMateria
 		~Cure();
 
 		Cure &		operator=( Cure const & rhs );
+		AMateria *clone()const;
 
 	private:
 

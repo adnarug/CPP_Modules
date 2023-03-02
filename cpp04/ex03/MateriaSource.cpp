@@ -1,14 +1,14 @@
-#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-IMateriaSource::IMateriaSource()
+MateriaSource::MateriaSource()
 {
 }
 
-IMateriaSource::IMateriaSource( const IMateriaSource & src )
+MateriaSource::MateriaSource( const MateriaSource & src )
 {
 }
 
@@ -17,7 +17,7 @@ IMateriaSource::IMateriaSource( const IMateriaSource & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-IMateriaSource::~IMateriaSource()
+MateriaSource::~MateriaSource()
 {
 }
 
@@ -26,7 +26,7 @@ IMateriaSource::~IMateriaSource()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-IMateriaSource &				IMateriaSource::operator=( IMateriaSource const & rhs )
+MateriaSource &				MateriaSource::operator=( MateriaSource const & rhs )
 {
 	//if ( this != &rhs )
 	//{
@@ -35,7 +35,7 @@ IMateriaSource &				IMateriaSource::operator=( IMateriaSource const & rhs )
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, IMateriaSource const & i )
+std::ostream &			operator<<( std::ostream & o, MateriaSource const & i )
 {
 	//o << "Value = " << i.getValue();
 	return o;
