@@ -1,8 +1,8 @@
-NAME			= animals
+NAME			= game
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= AMateria.cpp Ice.cpp Cure.cpp ICharacter.cpp main.cpp
+CPPFLAGS		= -Wall -Wextra -g -std=c++98 -MD -fsanitize=address#-Werror
+SRC_FILES		= main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)

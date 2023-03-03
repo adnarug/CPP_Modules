@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/pguranda/Projects/cpp/cpp03/ex01",
-      "program": "/Users/pguranda/Projects/cpp/cpp03/ex01/build/Debug/outDebug"
+      "cwd": "/Users/pguranda/Projects/cpp/cpp04/ex03",
+      "program": "/Users/pguranda/Projects/cpp/cpp04/ex03/game"
     }
   ]
 }

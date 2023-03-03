@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-AMateria::AMateria()
+AMateria::AMateria(): _type("RandomMateria")
 {
 }
 
@@ -33,7 +33,7 @@ AMateria::~AMateria()
 
 AMateria &				AMateria::operator=( AMateria const & rhs )
 {
-	if ( this != &rhs )
+	if (this != &rhs)
 	{
 		this->_type = rhs.getType();
 	}
@@ -41,27 +41,21 @@ AMateria &				AMateria::operator=( AMateria const & rhs )
 }
 
 /*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-void use (ICharacter& target)
-{
-	(void)target;
-}
-
-
-/*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
 std::string const & AMateria::getType() const
 {
-	return _type;
+	return this->_type;
 }
 
 void AMateria::setType(std::string const & type)
 {
 	_type = type;
+}
+
+void AMateria::use(ICharacter& target) {
+	(void)target;
 }
 
 /* ************************************************************************** */

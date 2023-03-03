@@ -15,4 +15,4 @@ class IMateriaSource
 
 };
 
-#endif /* ************************************************** IMATERIASOURCE_H */
+#endif 

@@ -4,23 +4,21 @@
 # include <iostream>
 # include <string>
 # include "AMateria.hpp"
-# include "ICharacter.hpp"
+
 
 class Ice: public AMateria
 {
 	public:
-
 		Ice();
 		Ice( Ice const & src );
-		~Ice();
-
 		Ice &		operator=( Ice const & rhs );
-	 AMateria* clone() const;
+		 ~Ice();
 
-	private:
+		AMateria* clone() const;
+	 	void use (ICharacter &target);
 
 };
 
 std::ostream &			operator<<( std::ostream & o, Ice const & i );
 
-#endif /* ************************************************************* ICE_H */
+#endif
