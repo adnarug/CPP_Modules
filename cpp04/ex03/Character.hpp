@@ -28,7 +28,9 @@ class Character : public ICharacter
 	private:
 		std::string _name;
 		AMateria	*slots[4];
+		AMateria	*_floorItems[4];
 		size_t		_slotsEmpty;
+		size_t		_itemsDropped;
 
 
 };

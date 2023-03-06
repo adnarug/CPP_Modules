@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:06:51 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/27 15:24:13 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:09:28 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int main ()
 {
 	{
+	std::cout << "*************** Subject's test***************" << std::endl;
 	std::cout << "*************** Construction Chain ***************" << std::endl;
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
@@ -38,6 +39,7 @@ int main ()
 
 	std::cout << std::endl << std::endl << std::endl;
 	{
+	std::cout << "*************** My test***************" << std::endl;
 	std::cout << "*************** Construction Chain ***************" << std::endl;
 	const WrongAnimal* meta = new WrongAnimal();
 	const Animal* j = new Dog();

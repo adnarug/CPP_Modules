@@ -15,7 +15,7 @@ class Brain
 		virtual size_t getNumIdeas() const;
 	
 	protected:
-		static size_t const	_numIdeas = 5;
+		static size_t const	_numIdeas = 100;
 		std::string 	_ideas[_numIdeas];
 };
 

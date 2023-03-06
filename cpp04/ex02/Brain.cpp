@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:03:08 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/28 18:26:38 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:18:42 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,13 @@ size_t Brain::getNumIdeas(void) const
 
 void Brain::printIdeas(void )
 {
-
-	for (size_t i = 0; i < getNumIdeas(); i++)
+	size_t  num_of_ideas = 3;
+	std::cout << "Printing top 3 (or less) ideas: " << std::endl;
+	if (getNumIdeas() < num_of_ideas)
+	{
+		num_of_ideas = getNumIdeas();
+	}
+	for (size_t i = 0; i < num_of_ideas; i++)
 	{
 		std::cout << getIdeas()[i] << std::endl;
 	}

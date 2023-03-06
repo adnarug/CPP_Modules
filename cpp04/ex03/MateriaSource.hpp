@@ -18,9 +18,10 @@ class MateriaSource : public IMateriaSource
 
 		void 				learnMateria(AMateria* m);
 		AMateria* 			createMateria(const std::string &type);
+		
 	private:
 		AMateria *_materia[4];
-		int _count;			
+		int		_count;			
 
 };
 

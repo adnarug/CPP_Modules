@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:06:51 by pguranda          #+#    #+#             */
-/*   Updated: 2023/02/28 19:11:31 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:12:00 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int main ()
 		for (; i < ZOO_SIZE; i++)
 			delete &zoo[i];
 	}
+		std::cout << "*************** TEST 3 ***************" << std::endl;
 	{
 		std::cout << "*************** Construction Chain ***************" << std::endl;
 		Dog Dog1;

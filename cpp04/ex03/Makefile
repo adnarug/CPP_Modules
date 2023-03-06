@@ -1,7 +1,7 @@
-NAME			= game
+NAME			= materia_game
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -g -std=c++98 -MD -fsanitize=address#-Werror
+CPPFLAGS		= -Wall -Wextra -std=c++98 -MD -Werror
 SRC_FILES		= main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 

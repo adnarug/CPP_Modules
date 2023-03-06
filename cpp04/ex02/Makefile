@@ -1,8 +1,8 @@
-NAME			= animals_with_brain
+NAME			= animals_with_brain_interface
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= Animal.cpp WrongAnimal.cpp WrongCat.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
+SRC_FILES		= AAnimal.cpp WrongAnimal.cpp WrongCat.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
