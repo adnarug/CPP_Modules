@@ -1,15 +1,14 @@
-NAME			= animals_with_brain_interface
+NAME			= bureaucrat
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -MD
-SRC_FILES		= AAnimal.cpp WrongAnimal.cpp WrongCat.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
+SRC_FILES		= Bureaucrat.cpp main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	@$(CXX) $(CPPFLAGS) -o $@ $^
-	@echo "$(NAME) is compiled!"
+	@$(CXX) $(CPPFLAGS) -o $@ $^ 
 
 obj/%.o : %.cpp  obj
 	@$(CXX) $(CPPFLAGS) -c $< -o $@

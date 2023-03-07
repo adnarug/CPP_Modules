@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:06:51 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/06 12:15:41 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:29:29 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main ()
 		delete j;
 		delete i;
 	}
-		system ("leaks animals_with_brain_interface");
+	system ("leaks animals_with_brain_interface");
 	std::cout << std::endl << std::endl;
 	std::cout << "*************** TEST 2 ***************" << std::endl;
 	{

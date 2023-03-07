@@ -1,0 +1,148 @@
+*************** TEST 1 ***************
+*************** Construction Chain ***************
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Cat is called
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Dog is called
+*************** Objects'methods ***************
+Cat: Meow-myay
+Dog: Gav-woof
+*************** Deconstruction ***************
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Dog is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Cat is called
+Deafult de-constructor for AAnimal is called
+Process:         animals_with_brain_interface [95912]
+Path:            /Volumes/VOLUME/*/animals_with_brain_interface
+Load Address:    0x10ef3a000
+Identifier:      animals_with_brain_interface
+Version:         ???
+Code Type:       X86-64
+Parent Process:  zsh [93879]
+
+Date/Time:       2023-03-06 12:31:07.504 +0100
+Launch Time:     2023-03-06 12:31:07.085 +0100
+OS Version:      Mac OS X 10.15.7 (19H2026)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 12.3 (12C33)
+
+Physical footprint:         332K
+Physical footprint (peak):  332K
+----
+
+leaks Report Version: 4.0
+Process 95912: 156 nodes malloced for 12 KB
+Process 95912: 0 leaks for 0 total leaked bytes.
+
+
+
+*************** TEST 2 ***************
+*************** Construction Chain ***************
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Dog is called
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Cat is called
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Dog is called
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Cat is called
+*************** Testing the zoo sounds ***************
+Dog 0 
+Dog: Gav-woof
+Cat 1 
+Cat: Meow-myay
+Dog 2 
+Dog: Gav-woof
+Cat 3 
+Cat: Meow-myay
+*************** Construction Chain ***************
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Dog is called
+Deafult constructor for AAnimal is called
+Copy constructor for Dog is called
+Deafult constructor for Brain is called
+Deafult constructor for AAnimal is called
+Copy constructor for Dog is called
+Deafult constructor for Brain is called
+Deafult constructor for AAnimal is called
+Deafult constructor for Brain is called
+Deafult constructor for Cat is called
+Deafult constructor for AAnimal is called
+Copy constructor for Cat is called
+Deafult constructor for Brain is called
+Deafult constructor for AAnimal is called
+Copy constructor for Cat is called
+Deafult constructor for Brain is called
+*************** Testing deep copies for Dogs and Cats ***************
+*************** Copy Constr: 
+Printing top 3 (or less) ideas: 
+Idea of a Dog 0
+Idea of a Dog 1
+Idea of a Dog 2
+**
+Printing top 3 (or less) ideas: 
+Idea of a Cat 0
+Idea of a Cat 1
+Idea of a Cat 2
+*************** Assignment oper: 
+Printing top 3 (or less) ideas: 
+Idea of a Dog 0
+Idea of a Dog 1
+Idea of a Dog 2
+**
+Printing top 3 (or less) ideas: 
+Idea of a Cat 0
+Idea of a Cat 1
+Idea of a Cat 2
+*************** Deconstruction ***************
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Cat is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Cat is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Cat is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Dog is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Dog is called
+Deafult de-constructor for AAnimal is called
+Deafult de-constructor for Brain is called
+Deafult de-constructor for Dog is called
+Deafult de-constructor for AAnimal is called
+Process:         animals_with_brain_interface [95912]
+Path:            /Volumes/VOLUME/*/animals_with_brain_interface
+Load Address:    0x10ef3a000
+Identifier:      animals_with_brain_interface
+Version:         ???
+Code Type:       X86-64
+Parent Process:  zsh [93879]
+
+Date/Time:       2023-03-06 12:31:07.949 +0100
+Launch Time:     2023-03-06 12:31:07.085 +0100
+OS Version:      Mac OS X 10.15.7 (19H2026)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 12.3 (12C33)
+
+Physical footprint:         352K
+Physical footprint (peak):  352K
+----
+
+leaks Report Version: 4.0
+Process 95912: 164 nodes malloced for 22 KB
+Process 95912: 0 leaks for 0 total leaked bytes.
+
