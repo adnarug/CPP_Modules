@@ -1,8 +1,8 @@
-NAME			= bureaucrat_form
+NAME			= intern
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Wextra -std=c++98 -MD #-Werror
-SRC_FILES		=  main.cpp Bureaucrat.cpp AForm.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC_FILES		=  main.cpp Bureaucrat.cpp AForm.cpp AForm.cpp ShrubberyCreationForm.cpp Intern.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
