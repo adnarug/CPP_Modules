@@ -1,7 +1,7 @@
 NAME			= bureaucrat_form
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -std=c++98 -MD #-Werror
+CPPFLAGS		= -Wall -Wextra -std=c++98 -MD -Werror
 SRC_FILES		= Bureaucrat.cpp Form.cpp main.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 

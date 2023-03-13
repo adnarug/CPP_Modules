@@ -9,11 +9,11 @@ class AAnimal
 	public:
 		AAnimal(void);
 		AAnimal(AAnimal const &src);
-		virtual ~AAnimal(void);
-		AAnimal &operator=(AAnimal const &rhs);
+		virtual		~AAnimal(void);
+		AAnimal 	&operator=(AAnimal const &rhs);
 
 		virtual void makeSound(void) const = 0;
-		void setType(std::string const &type);
+		void		setType(std::string const &type);
 		std::string getType(void) const;
 
 	protected:

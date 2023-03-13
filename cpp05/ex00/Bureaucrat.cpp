@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:03:17 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/07 14:52:25 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:39:34 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(
 	}
 	catch (std::exception &e)
 	{
-		std::cerr<< this->getName()<<e.what() << std::endl;
+		std::cerr<< this->getName()<<e.what()<< std::endl;
 	}
 }
 
@@ -64,7 +64,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 {
-	o << i.getName() << ", bureaucrat grade " << i.getGrade() << std::endl;
+	o << i.getName() << ", bureaucrat grade is " << i.getGrade() << std::endl;
 	return o;
 }
 

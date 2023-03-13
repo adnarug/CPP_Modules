@@ -42,7 +42,7 @@ class AForm
 				virtual const char* what() const throw();
 		};
 
-	private:
+	protected:
 		std::string const	_name;
 		bool				_signed;
 		int const			sign_grade_required;

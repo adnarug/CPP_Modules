@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:08:19 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/10 22:34:52 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:54:12 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int main ()
 		bureaucrat0->executeForm(*robotomy);
 		bureaucrat0->executeForm(*pardon);
 	}
-
 	catch (std::exception &e)
 	{
 		std::cerr<< e.what() << std::endl;
@@ -45,7 +44,6 @@ int main ()
 	delete shrubbery;
 	delete robotomy;
 	delete pardon;
-	
-	system ("leaks bureaucrat_form");
+	// system ("leaks bureaucrat_form");
 	return (0);
 }

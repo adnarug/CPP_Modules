@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:08:19 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/07 14:48:27 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:26:18 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int main ()
 	try
 	{
 		bureaucrat0->incrementGrade();
+		std::cout << *bureaucrat0 << std::endl;
+		bureaucrat1->decrementGrade();
 		bureaucrat1->decrementGrade();
 	}
 	catch (std::exception &e)

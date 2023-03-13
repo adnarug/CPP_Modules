@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:03:17 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/08 14:31:16 by pguranda         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:48:13 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ Bureaucrat::Bureaucrat() : _name("NoName"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade)
 {
-	try 
+	if (_grade < 1)
 	{
-		if (_grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-		else if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
+		std::cerr << this->getName() << " ";
+		throw Bureaucrat::GradeTooHighException();
 	}
-	catch (std::exception &e)
+	else if (grade > 150)
 	{
-		std::cerr<< this->getName()<<e.what() << std::endl;
+		std::cerr << this->getName() << " ";
+		throw Bureaucrat::GradeTooLowException();
 	}
 }
 
@@ -64,7 +63,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 {
-	o << i.getName() << ", bureaucrat grade " << i.getGrade() << std::endl;
+	o << i.getName() << ", bureaucrat grade is " << i.getGrade() << std::endl;
 	return o;
 }
 
@@ -107,6 +106,11 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form * form)
 {
+	if (form->getSigned() == true)
+	{
+		std::cerr<<"The " << form->getName() << " is already signed" << std::endl;
+		return ;
+	}
 	try
 	{
 		form->beSigned(this);
@@ -114,7 +118,7 @@ void Bureaucrat::signForm(Form * form)
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << this->getName() << " could not sign " << form->getName() << "because";
+		std::cerr << this->getName() << " could not sign " << form->getName() << "because ";
 		std::cerr << e.what() << std::endl;
 	}
 }

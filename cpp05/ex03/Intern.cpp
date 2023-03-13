@@ -37,10 +37,20 @@ Intern &				Intern::operator=( Intern const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+const char* Intern::InvalidFormException::what() const throw()
+{
+	return ("Error\n Invalid form name requested from Intern");
+}
+
 AForm * Intern::makeForm(std::string const &name, std::string const &target)
 {
 	size_t i = 0;
 	std::string valid_forms[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
+	for (i = 0; i < 3; i++)
+	{
+		if (name == valid_forms[i])
+			break ;
+	}
 	switch (i)
 	{
 		case 0:
@@ -53,8 +63,8 @@ AForm * Intern::makeForm(std::string const &name, std::string const &target)
 			if (name == valid_forms[i])
 				return (new ShrubberyCreationForm(target));
 		default:
-			std::cerr << "Invalid form requested" << std::endl;
-			return (NULL);
+			throw Intern::InvalidFormException();
+		return (NULL);
 	}
 }
 /*

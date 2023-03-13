@@ -46,7 +46,6 @@ PresidentialPardonForm & PresidentialPardonForm::operator=( PresidentialPardonFo
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	srand (time(0));
-
 	if (this->getSigned() == false)
 	{
 		std::cerr<<"Cannot execute the Pardon: ";
