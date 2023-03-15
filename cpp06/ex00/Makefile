@@ -20,9 +20,16 @@ clean :
 	@rm -rf obj
 
 
-run:
+test:
 	@make
-	@./$(NAME)
+	@echo "*****Subject tests*****"
+	./$(NAME) 0
+	./$(NAME) nan
+	./$(NAME) 42.0f
+	@echo "*****My tests*****"
+	./$(NAME) 123123123
+	./$(NAME) 123
+	./$(NAME) -10.5f
 
 fclean : clean
 	@rm -f $(NAME)
