@@ -4,6 +4,9 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include <limits>
+# include <cfloat>
+# include <cmath>
 
 enum type 
 {
@@ -14,6 +17,14 @@ enum type
 	DOUBLE,
 	PSEUDO
 } ;
+
+static struct formats
+{
+	int		intVal;
+	char	charVal;
+	float	floatVal;
+	double	doubleVal;
+} formats;
 
 class ScalarConverter
 {
@@ -32,15 +43,31 @@ class ScalarConverter
 		static bool				isDouble(const std::string& literal);
 		static bool				isChar(const std::string& s);
 		static bool				isChar(int i);
-		static bool				isPseudo(const std::string& literal);
+
+		static void				printAllFormats();
+		static void				printChar();
+		static void				printInt();
+		static void				printFloat();
+		static void				printDouble();
+		static void				printPseudoFloat();
+		static void				printPseudoDouble();
+
 		static bool				isPseudo_f(const std::string& literal);
 		static bool				isPseudo_d(const std::string& literal);
 
 		static type				getType();
 		static void				setType(type type);
 
+		static struct formats		getFormats();
+		static void					setFormat(int const input);
+		static void					setFormat(char const input);
+		static void					setFormat(float const input);
+		static void					setFormat(double const input);
+	
+
 	private:
-		static type 			_type;
+		static type 				_type;
+		static struct formats		_formats;
 };
 
 #endif /* ************************************************* SCALARCONVERTER_H */
