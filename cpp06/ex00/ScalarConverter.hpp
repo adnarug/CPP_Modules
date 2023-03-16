@@ -42,7 +42,7 @@ class ScalarConverter
 		static bool				isFloat(const std::string& literal);
 		static bool				isDouble(const std::string& literal);
 		static bool				isChar(const std::string& s);
-		static bool				isChar(int i);
+		static bool				isChar(const char i);
 
 		static void				printAllFormats();
 		static void				printChar();
@@ -51,6 +51,8 @@ class ScalarConverter
 		static void				printDouble();
 		static void				printPseudoFloat();
 		static void				printPseudoDouble();
+		static void				printPseudoInt();
+		static void				printIntImpossible();
 
 		static bool				isPseudo_f(const std::string& literal);
 		static bool				isPseudo_d(const std::string& literal);

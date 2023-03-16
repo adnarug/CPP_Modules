@@ -26,7 +26,6 @@ ScalarConverter::~ScalarConverter()
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
-
 ScalarConverter &				ScalarConverter::operator=( ScalarConverter const & rhs )
 {
 	(void)rhs;
@@ -37,11 +36,10 @@ bool ScalarConverter::isChar(const std::string& s)
 	return s.length() == 1 && !isdigit(s[0]);
 }
 
-bool ScalarConverter::isChar(const int i)
+bool ScalarConverter::isChar(const char i)
 {
-	if (i >= 0 && i <= 127 && isprint(static_cast<char>(i)))
+	if (i >= CHAR_MIN && i <= CHAR_MAX)
 		return true;
-	std::cout << "Non displayable" << std::endl;
 	return false;
 }
 
@@ -85,7 +83,7 @@ bool ScalarConverter::isDouble(const std::string& literal)
 		return false;
 	for (size_t i = 0; i < literal.length(); i++)
 	{
-		if (!isdigit(literal[i]) && literal[i] != '.')
+		if (!isdigit(literal[i]) && literal[i] != '.' && literal[i] != '-' && literal[i] != '+')
 			return false;
 	}
 	return true;
@@ -139,6 +137,11 @@ bool ScalarConverter::isPseudo_d(const std::string& literal)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+//implementation of is nan - checks for invalid numbers e.g. 12312312312312312312.12312312312312312312
+bool is_nan(double x) 
+{
+    return x != x;
+}
 
 /*This error indicates that the linker is unable to find the definition for the static member variable _type of the ScalarConverter class.
 
@@ -147,10 +150,8 @@ type ScalarConverter::_type;
 
 struct formats ScalarConverter::_formats;
 
-
 type ScalarConverter::determineType(const std::string& literal)
 {
-
 	type type;
 	if (literal.empty())
 		return (INVALID);
@@ -183,7 +184,7 @@ type ScalarConverter::determineType(const std::string& literal)
 
 void ScalarConverter::printFloat()
 {
-	if (getFormats().floatVal > FLT_MAX || getFormats().floatVal < -FLT_MAX)
+	if (getFormats().floatVal > FLT_MAX || getFormats().floatVal < -FLT_MAX )
 	{
 		std::cout << "float : impossible" << std::endl;
 	}
@@ -195,7 +196,7 @@ void ScalarConverter::printFloat()
 
 void ScalarConverter::printDouble()
 {
-	if (getFormats().doubleVal > DBL_MAX || getFormats().doubleVal < -DBL_MAX)
+	if (getFormats().doubleVal > DBL_MAX || getFormats().doubleVal < -DBL_MAX )
 	{
 		std::cout << "double : impossible" << std::endl;
 	}
@@ -205,9 +206,10 @@ void ScalarConverter::printDouble()
 	}
 }
 
+
 void ScalarConverter::printInt()
 {
-	if (getFormats().intVal > INT_MAX || getFormats().intVal < INT_MIN || !getFormats().intVal)
+	if (getFormats().intVal > INT_MAX || getFormats().intVal < INT_MIN || !is_nan(getFormats().doubleVal))
 	{
 		std::cout << "int : impossible" << std::endl;
 	}
@@ -217,14 +219,22 @@ void ScalarConverter::printInt()
 	}
 }
 
+void ScalarConverter::printIntImpossible()
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int : impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
+
 void ScalarConverter::printPseudoFloat()
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 	if (getFormats().floatVal == std::numeric_limits<float>::infinity())
 	{
-		std::cout << "float: " << '+' << getFormats().floatVal << 'f' << std::endl;
-		std::cout << "double: " << '+' << getFormats().floatVal << std::endl;
+		std::cout << "float: " << getFormats().floatVal << 'f' << std::endl;
+		std::cout << "double: " << getFormats().floatVal << std::endl;
 
 	}
 	else if (getFormats().floatVal == -std::numeric_limits<float>::infinity())
@@ -245,8 +255,8 @@ void ScalarConverter::printPseudoDouble()
 	std::cout << "int: impossible" << std::endl;
 	if (getFormats().doubleVal == std::numeric_limits<float>::infinity())
 	{
-		std::cout << "float: " << '+' << getFormats().doubleVal << 'f' << std::endl;
-		std::cout << "double: " << '+' << getFormats().doubleVal << std::endl;
+		std::cout << "float: " << getFormats().doubleVal << 'f' << std::endl;
+		std::cout << "double: " << getFormats().doubleVal << std::endl;
 
 	}
 	else if (getFormats().doubleVal == -std::numeric_limits<float>::infinity())
@@ -262,18 +272,19 @@ void ScalarConverter::printPseudoDouble()
 }
 
 void ScalarConverter::printChar()
-{
-	if (!isChar(getFormats().charVal) || getFormats().charVal > CHAR_MAX || getFormats().charVal  < CHAR_MIN || !getFormats().charVal)
+{ 
+	if (!isChar(getFormats().charVal) || getFormats().doubleVal < CHAR_MIN || getFormats().doubleVal > CHAR_MAX )
 	{
 		std::cout << "char : impossible" << std::endl;	
 		return ;
 	}
+	if (!isprint(getFormats().charVal))
+	{
+		std::cout << "char : Non displayable" << std::endl;
+		return ;
+	}
 	else
 		std::cout << std::left << "char: '" << getFormats().charVal  << "'" << std::endl;
-
-	
-
-
 }
 
 void ScalarConverter::printAllFormats()
@@ -298,7 +309,13 @@ void ScalarConverter::carryOutConversion(const std::string & literal)
 	}
 	else if (getType() == INT)
 	{
-		long l = strtol(literal.c_str(), NULL, 10);
+		 long l = strtoll(literal.c_str(), NULL, 10);
+		 std::cout << "long" << l << std::endl;
+		if (l > INT_MAX || l < INT_MIN)
+		{
+			printIntImpossible();
+			return ;
+		}
 		int i = static_cast<int>(l);
 		setFormat(static_cast<char>(i));
 		setFormat(static_cast<int>(i));
@@ -326,25 +343,15 @@ void ScalarConverter::carryOutConversion(const std::string & literal)
 	if (getType() == DOUBLE)
 	{
 		if (isPseudo_d(literal))
-		{
-			std::string literal_to_print =	literal;
-			std::cout << std::left << "char: " << "Impossible" << std::endl;
-			std::cout << std::left << "int: " << "Impossible" << std::endl;
-			std::cout << std::left << "float: " << literal << "f" << std::endl;
-			std::cout << std::left << "double: " << literal << std::endl;
-
-		}
+			printPseudoDouble();
 		else
 		{
 			double d = strtod(literal.c_str(), NULL);
-			std::cout << std::left <<   "char: ";
-				if (isChar(static_cast<int>(d)))
-			std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
-				else
-			std::cout << "Non displayable" << std::endl;
-			std::cout << std::left << "int: " << static_cast<int>(d) << std::endl;
-			std::cout << std::left << "float: " << static_cast<float>(d) << "f" << std::endl;
-			std::cout << std::left << std::setw(9) << "double: " << d << std::endl;
+			setFormat(static_cast<char>(d));
+			setFormat(static_cast<int>(d));
+			setFormat(static_cast<float>(d));
+			setFormat(d);
+			printAllFormats();
 		}
 		return ;
 	}
@@ -355,7 +362,6 @@ void ScalarConverter::carryOutConversion(const std::string & literal)
 {
 	setType(determineType(literal));
 	carryOutConversion(literal);
-	// printConverted(handleConversion(literal));
 }
 
 /*

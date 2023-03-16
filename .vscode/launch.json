@@ -6,9 +6,9 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
-      "args": [],
-      "cwd": "/Users/pguranda/Projects/cpp/cpp04/ex03",
-      "program": "/Users/pguranda/Projects/cpp/cpp04/ex03/game"
+      "args": ["12345.12345"],
+      "cwd": "/Users/pguranda/Projects/cpp/cpp06/ex00",
+      "program": "/Users/pguranda/Projects/cpp/cpp06/ex00/convert"
     }
   ]
 }
