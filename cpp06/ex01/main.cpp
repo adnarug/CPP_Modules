@@ -5,19 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 14:04:03 by pguranda          #+#    #+#             */
-/*   Updated: 2023/03/17 14:13:12 by pguranda         ###   ########.fr       */
+/*   Created: 2023/02/17 12:06:38 by pguranda          #+#    #+#             */
+/*   Updated: 2023/03/17 14:20:50 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-
-int main(int argc, char *argv[])
+int main ()
 {
-	if (argc != 2)
-		return (std::cout << "Error\n invalid input!" << std::endl, EXIT_FAILURE);
-	std::cout << std::fixed << std::setprecision(1);
-	ScalarConverter::convert(argv[1]);
-	return EXIT_SUCCESS;
+	Data *data = new Data;
+	data->s1 = "Hello World";
+	data->n = 42;
+	data->c = 'c';
+	data->f = 42.42f;
+	data->d = 42.42;
+	
+	Serializer serializer;
+	uintptr_t raw = serializer.serialize(data);
+	std::cout << "Serial representation:" << raw << std::endl;
+	Data *data2 = serializer.deserialize(raw);
+	std::cout << data2->s1 << std::endl;
+	std::cout << data2->n << std::endl;
+	std::cout << data2->c << std::endl;
+	std::cout << data2->f << 'f' << std::endl;
+	std::cout << data2->d << std::endl;
+	delete data;
+	return 0;
 }

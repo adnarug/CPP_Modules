@@ -20,10 +20,10 @@ enum type
 
 static struct formats
 {
-	int		intVal;
-	char	charVal;
-	float	floatVal;
-	double	doubleVal;
+	long int		intVal;
+	char			charVal;
+	float			floatVal;
+	long double		doubleVal;
 } formats;
 
 class ScalarConverter
@@ -51,7 +51,6 @@ class ScalarConverter
 		static void				printDouble();
 		static void				printPseudoFloat();
 		static void				printPseudoDouble();
-		static void				printPseudoInt();
 		static void				printIntImpossible();
 
 		static bool				isPseudo_f(const std::string& literal);
@@ -61,9 +60,11 @@ class ScalarConverter
 		static void				setType(type type);
 
 		static struct formats		getFormats();
+		static void					setFormat(long int const input);
 		static void					setFormat(int const input);
 		static void					setFormat(char const input);
 		static void					setFormat(float const input);
+		static void					setFormat(long double const input);
 		static void					setFormat(double const input);
 	
 

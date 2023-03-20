@@ -1,8 +1,8 @@
-NAME			= convert
+NAME			= array
 OBJ				= obj/
 CXX				= c++
 CPPFLAGS		= -Wall -Werror -g -Wextra -std=c++98 -MD 
-SRC_FILES		=  main.cpp ScalarConverter.cpp
+SRC_FILES		=  main.cpp 
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
 all : $(NAME)
@@ -18,24 +18,6 @@ obj :
 
 clean :
 	@rm -rf obj
-
-check: 
-	@make
-	./$(NAME) 0
-	@echo ---------------
-	./$(NAME) nan
-	@echo ---------------
-	./$(NAME) 42.0f
-	@echo ---------------
-	./$(NAME) -inf
-	@echo ---------------
-	./$(NAME) +inf
-	@echo ---------------
-	./$(NAME) -42
-	@echo ---------------
-	./$(NAME) 42
-	@echo ---------------
-	./$(NAME) c
 
 fclean : clean
 	@rm -f $(NAME)

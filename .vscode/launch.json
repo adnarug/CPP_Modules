@@ -6,7 +6,7 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
-      "args": ["12345.12345"],
+      "args": ["123451234512345.1234512345"],
       "cwd": "/Users/pguranda/Projects/cpp/cpp06/ex00",
       "program": "/Users/pguranda/Projects/cpp/cpp06/ex00/convert"
     }
