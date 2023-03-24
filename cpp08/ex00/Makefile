@@ -24,4 +24,8 @@ fclean : clean
 
 re : clean all
 
+run : 
+	@make
+	@./$(NAME)
+
 .PHONY : all clean fclean re

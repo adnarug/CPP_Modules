@@ -20,8 +20,7 @@ typename MutantStack<T>::iterator MutantStack<T>::begin()
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end()
-{
-	return std::stack<T>::c.end();
+{ac.end();
 }
 
 template <typename T>

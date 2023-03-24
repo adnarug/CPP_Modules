@@ -2,7 +2,6 @@
 # define MUTANTSTACK_HPP
 
 # include <iostream>
-# include <string>
 # include <stack>
 
 template <typename T>
@@ -18,7 +17,6 @@ class MutantStack : public std::stack<T>
 		iterator begin();
 		iterator end();
 		MutantStack &		operator=( MutantStack const & rhs );
-
 };
 
 # include "MutantStack.tpp"
