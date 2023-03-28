@@ -34,7 +34,7 @@
 6. Print the new vector
 
 		*/
-
+//To Do to overwrite lower bound
 int main (int argc, char **argv)
 {
 	if (argc != 2)
@@ -43,9 +43,12 @@ int main (int argc, char **argv)
 		return (1);
 	}
 	BitcoinExchange bitcoin(argv[1]);
-
-	bitcoin.fillMaps();
+	std::cout << std::fixed << std::setprecision(2);
+	bitcoin.fillInputMap();
+	bitcoin.fillDataMap();
 	std::cout << bitcoin.getInput() << std::endl;
+	// std::cout << bitcoin.getData() << std::endl;
+	bitcoin.multiplyValues();
 
 	
 	return (0);

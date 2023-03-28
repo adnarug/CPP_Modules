@@ -1,6 +1,4 @@
-obj/BitcoinExchange.o: \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/share/asan_blacklist.txt \
-  BitcoinExchange.cpp BitcoinExchange.hpp \
+obj/BitcoinExchange.o: BitcoinExchange.cpp BitcoinExchange.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/pthread.h \

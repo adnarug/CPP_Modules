@@ -1,7 +1,7 @@
 NAME			= btc
 OBJ				= obj/
 CXX				= c++
-CPPFLAGS		= -Wall -Wextra -std=c++98 -MD -fsanitize=address #-WERRRO!!!
+CPPFLAGS		= -Wall -Wextra -std=c++98 -MD #-fsanitize=address #-WERRRO!!!
 SRC_FILES		=  main.cpp BitcoinExchange.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
 
