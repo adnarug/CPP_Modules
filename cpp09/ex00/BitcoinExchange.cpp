@@ -66,7 +66,15 @@ bool 			operator<(const Date& lhs, const Date& rhs)
     // if (lhs.month != rhs.month) {
     //     return lhs.month < rhs.month;
     // }
-		return lhs.index < rhs.index;
+		// return lhs.index < rhs.index;
+
+	if (lhs.year != rhs.year) {
+		return lhs.year < rhs.year;
+	}
+	if (lhs.month != rhs.month) {
+		return lhs.month < rhs.month;
+	}
+	return lhs.day < rhs.day;
 }
 
 /*
@@ -115,10 +123,8 @@ void	BitcoinExchange::fillInputMap()
 			// if (!line.find(' ') || !line.find('-'))
 			// 	exit (1);
 			date = this->fillMapDate(line, delimeter);
-			date.index = getInput().size() + 1;
 			value = this->fillMapValue(line, delimeter);
 			date_new = new Date(date);
-
 			value_new = new float(value);
 			pair = std::make_pair(*date_new, *value_new);
 			this->setInput(pair);
@@ -132,6 +138,29 @@ void	BitcoinExchange::fillInputMap()
 
 	// delete fsInput;
 }
+//Funciton which opens the input file and reads it line by line
+void BitcoinExchange::performConversion()
+{
+	Date date;
+	float value;
+	std::string line;
+	std::ifstream fsInput(this->getInputFile());
+	if (fsInput.is_open() && fsInput.good())
+	{
+	std::cout << "test" << std::endl;
+		while (getline(fsInput, line))//TODO more parsing
+		{
+			if (!line.find('|'))
+				exit (1);
+			if (!line.find(' ') || !line.find('-'))
+				exit (1);
+			date = this->fillMapDate(line, '|');
+			value = this->fillMapValue(line, '|');
+			std::cout << date.joinedDate << "=>" << value << " = " << value*(--getData().upper_bound(date))->second << std::endl;
+		}
+	}
+}
+
 
 void	BitcoinExchange::fillDataMap()
 {
@@ -154,7 +183,6 @@ void	BitcoinExchange::fillDataMap()
 			// if (!line.find(' ') || !line.find('-'))
 			// 	exit (1);
 			date = this->fillMapDate(line, delimeter);
-			date.index = getData().size() + 1;
 			value = this->fillMapValue(line, delimeter);
 			date_new = new Date(date);
 
@@ -174,9 +202,9 @@ void	BitcoinExchange::fillDataMap()
 float		BitcoinExchange::findClosestDate(Date const &date)
 {
 	std::map<Date, float>::iterator it;
-	std::cout << "checking the closest: " << date.joinedDate << std::endl;
 
 	it = this->getData().lower_bound(date);
+	std::cout << " the closest: " << date.joinedDate << std::endl;
 	if (it == this->getData().end())
 	{
 		std::cerr << "Error\nNo data for the given date" << std::endl;

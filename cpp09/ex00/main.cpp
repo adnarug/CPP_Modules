@@ -44,11 +44,12 @@ int main (int argc, char **argv)
 	}
 	BitcoinExchange bitcoin(argv[1]);
 	std::cout << std::fixed << std::setprecision(2);
-	bitcoin.fillInputMap();
+	// bitcoin.fillInputMap();
 	bitcoin.fillDataMap();
-	std::cout << bitcoin.getInput() << std::endl;
-	// std::cout << bitcoin.getData() << std::endl;
-	bitcoin.multiplyValues();
+	bitcoin.performConversion();
+	// std::cout << bitcoin.getInput() << std::endl;
+	//  std::cout << bitcoin.getData() << std::endl;
+	// bitcoin.multiplyValues();
 
 	
 	return (0);

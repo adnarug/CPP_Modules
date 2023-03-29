@@ -14,7 +14,6 @@
 
 struct Date
 {
-	size_t		index;
 	int			year;
 	int			month;
 	int			day;
@@ -58,6 +57,8 @@ class BitcoinExchange
 		void									multiplyValues();
 		float									findDate(Date const &date);
 		float									findClosestDate(Date const &date);
+
+		void 								performConversion();
 
 		std::map<Date, float>::iterator		search_map(Date const &date_to_find);
 	private:
