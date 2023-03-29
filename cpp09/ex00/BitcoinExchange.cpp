@@ -56,9 +56,7 @@ std::ostream& operator<<(std::ostream& os, const std::map<Date, float>& m)
 
 bool 			operator<(const Date& lhs, const Date& rhs)
 {
-	// std::cout << "lhs.year = " << lhs.year << " rhs.year = " << rhs.year << std::endl;
-	// std::cout << "lhs.month = " << lhs.month << " rhs.month = " << rhs.month << std::endl;
-	// std::cout << "lhs.day = " << lhs.day << " rhs.day = " << rhs.day << std::endl;
+
 
     // if (lhs.year != rhs.year) {
     //     return lhs.year < rhs.year;
@@ -87,8 +85,20 @@ Date	BitcoinExchange::fillMapDate(std::string &line, char  delimeter)
 	Date date;
 	date.joinedDate = line.substr(0, line.find(delimeter));
 	date.year = std::atol(line.substr(0, line.find('-')).c_str());
+	if (date.year < 2009 || date.year > 2022)
+	{
+		throw BitcoinExchange::BadInput(line);
+	}
 	date.month = std::atol(line.substr(line.find('-') + 1, line.find('-')).c_str());
+	if (date.month < 1 || date.month > 12)
+	{
+		throw BitcoinExchange::BadInput(line);
+	}
 	date.day = std::atol(line.substr(line.rfind('-') + 1).c_str());
+	if (date.day < 1 || date.day > 31)
+	{
+		throw BitcoinExchange::BadInput(line);
+	}
 	// if (date.year <= 0 || date.month <= 0 || date.day <= 0 || date.joinedDate.empty()) //close stream
 	// 	exit (1);
 	return date;
@@ -98,6 +108,14 @@ float		BitcoinExchange::fillMapValue(std::string &line, char  delimeter)
 {
 	float value;
 	value = std::atof(line.substr(line.find(delimeter) + 1).c_str());
+	if (value < 0)
+	{
+		throw BitcoinExchange::NegativeValue();
+	}
+	else if (value >= INT_MAX)
+	{
+		throw BitcoinExchange::TooLargeValue();
+	}
 	return value;
 }
 
@@ -120,10 +138,18 @@ void	BitcoinExchange::fillInputMap()
 			// std::cout << line << std::endl;
 			if (!line.find(delimeter))
 				exit (1);
-			// if (!line.find(' ') || !line.find('-'))
-			// 	exit (1);
-			date = this->fillMapDate(line, delimeter);
-			value = this->fillMapValue(line, delimeter);
+			if (line.find('-') == std::string::npos)
+				continue ;
+			try
+			{
+				date = this->fillMapDate(line, delimeter);
+				value = this->fillMapValue(line, delimeter);
+			}
+			catch (const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+			
 			date_new = new Date(date);
 			value_new = new float(value);
 			pair = std::make_pair(*date_new, *value_new);
@@ -147,20 +173,27 @@ void BitcoinExchange::performConversion()
 	std::ifstream fsInput(this->getInputFile());
 	if (fsInput.is_open() && fsInput.good())
 	{
-	std::cout << "test" << std::endl;
 		while (getline(fsInput, line))//TODO more parsing
 		{
 			if (!line.find('|'))
 				exit (1);
-			if (!line.find(' ') || !line.find('-'))
-				exit (1);
-			date = this->fillMapDate(line, '|');
-			value = this->fillMapValue(line, '|');
-			std::cout << date.joinedDate << "=>" << value << " = " << value*(--getData().upper_bound(date))->second << std::endl;
+			if (line.find('-') == std::string::npos)
+				continue;
+			try
+			{
+				date = this->fillMapDate(line, '|');
+				value = this->fillMapValue(line, '|');
+			}
+			catch (const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+				continue ;
+			}
+			std::cout << date.joinedDate << "=>" << value << " = " << value * (--getData().upper_bound(date))->second << std::endl;
 		}
+
 	}
 }
-
 
 void	BitcoinExchange::fillDataMap()
 {
@@ -180,12 +213,20 @@ void	BitcoinExchange::fillDataMap()
 			// std::cout << line << std::endl;
 			if (!line.find(delimeter))
 				exit (1);
+			if (line.find('-') == std::string::npos)
+				continue ;
 			// if (!line.find(' ') || !line.find('-'))
 			// 	exit (1);
-			date = this->fillMapDate(line, delimeter);
-			value = this->fillMapValue(line, delimeter);
+			try
+			{
+				date = this->fillMapDate(line, delimeter);
+				value = this->fillMapValue(line, delimeter);
+			}
+			catch (const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
 			date_new = new Date(date);
-
 			value_new = new float(value);
 			pair = std::make_pair(*date_new, *value_new);
 			this->setData(pair);
@@ -298,6 +339,29 @@ void	BitcoinExchange::checkFiles()
 
 }
 
+const char *BitcoinExchange::BadInput::what() const throw()
+{
+	std::string error = "Error: bad input => ";
+	if (!this->bad_line.empty())
+		return (error.append(this->bad_line).c_str());
+	else
+		return "Error: bad input ";
+}
+
+BitcoinExchange::BadInput::BadInput(std::string  &message) : bad_line(message)
+{
+}
+
+
+const char *BitcoinExchange::NegativeValue::what() const throw()
+{
+	return "Error: not a positive number";
+}
+
+const char *BitcoinExchange::TooLargeValue::what() const throw()
+{
+	return "Error: too large a number";
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

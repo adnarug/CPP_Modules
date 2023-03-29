@@ -10,6 +10,7 @@
 # include <algorithm>
 # include <fstream>
 # include <utility>
+# include <limits>
 
 
 struct Date
@@ -58,7 +59,25 @@ class BitcoinExchange
 		float									findDate(Date const &date);
 		float									findClosestDate(Date const &date);
 
-		void 								performConversion();
+		void 									performConversion();
+
+		class BadInput : public std::exception
+		{
+			public:
+				BadInput(std::string & bad_line);
+				const char *what() const throw();
+				const std::string &bad_line;
+		};
+		class NegativeValue : public std::exception
+		{
+			const char *what() const throw();
+
+		};
+		class TooLargeValue : public std::exception
+		{
+			const char *what() const throw();
+
+		};
 
 		std::map<Date, float>::iterator		search_map(Date const &date_to_find);
 	private:
