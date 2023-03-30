@@ -45,7 +45,6 @@ std::ostream &					operator<<( std::ostream & o, BitcoinExchange & i )
 //Priniting the input map
 std::ostream& operator<<(std::ostream& os, const std::map<Date, float>& m)
 {
-    os.precision(2);
     for (std::map<Date, float>::const_iterator it = m.begin(); it != m.end(); ++it) {
         os << it->first.joinedDate << " | " << it->second << std::endl;
     }
@@ -167,20 +166,25 @@ void	BitcoinExchange::fillInputMap()
 //Funciton which opens the input file and reads it line by line
 void BitcoinExchange::performConversion()
 {
-	Date date;
-	float value;
-	std::string line;
-	std::ifstream fsInput(this->getInputFile());
+	Date			date;
+	float			value;
+	std::string		line;
+	std::ifstream	fsInput(this->getInputFile());
 	if (fsInput.is_open() && fsInput.good())
 	{
 		while (getline(fsInput, line))//TODO more parsing
 		{
-			if (!line.find('|'))
-				exit (1);
-			if (line.find('-') == std::string::npos)
-				continue;
 			try
 			{
+				if (line.empty())
+				{
+					std::cerr << "Error: empty line" << std::endl;
+					continue;
+				}
+				if (line.find('|') == std::string::npos)
+					throw BitcoinExchange::BadInput(line);
+				if (line.find('-') == std::string::npos)
+					throw BitcoinExchange::BadInput(line);
 				date = this->fillMapDate(line, '|');
 				value = this->fillMapValue(line, '|');
 			}
@@ -194,29 +198,26 @@ void BitcoinExchange::performConversion()
 
 	}
 }
-
+//Remove the malloc
 void	BitcoinExchange::fillDataMap()
 {
-	std::ifstream *fsData = new std::ifstream("data.csv");
-	setfsData(fsData);
+	std::ifstream			fsData("data.csv");
 	std::string				line;
-	float value;
-	float *value_new;
-	Date date;
-	Date *date_new;
+	float					value;
+	// float					*value_new;
+	Date					date;
+	// Date					*date_new;
+	char 					delimeter = ',';
 	std::pair <Date, float> pair;
-	char delimeter = ',';
-	if (getfsData()->is_open() && getfsData()->good())
+	if (fsData.is_open() && fsData.good())
 	{
-		while (getline(*getfsData(), line))//TODO more parsing
+		while (getline(fsData, line))//TODO more parsing
 		{
 			// std::cout << line << std::endl;
 			if (!line.find(delimeter))
 				exit (1);
 			if (line.find('-') == std::string::npos)
 				continue ;
-			// if (!line.find(' ') || !line.find('-'))
-			// 	exit (1);
 			try
 			{
 				date = this->fillMapDate(line, delimeter);
@@ -226,19 +227,19 @@ void	BitcoinExchange::fillDataMap()
 			{
 				std::cerr << e.what() << '\n';
 			}
-			date_new = new Date(date);
-			value_new = new float(value);
-			pair = std::make_pair(*date_new, *value_new);
+			// date_new = new Date(date);
+			// value_new = new float(value);
+			pair = std::make_pair(date, value);
 			this->setData(pair);
 		}
 	}
 	else
 	{
-		std::cerr << "Error\nUnable to open the file" << std::endl;
+		std::cerr << "Error\nUnable to open the data file" << std::endl;
 		exit(1);
 	}
-	// delete fsData;
 }
+
 // Function which takes the date from _input, finds the closest date in _data and returns the value
 float		BitcoinExchange::findClosestDate(Date const &date)
 {

@@ -26,6 +26,5 @@ re : clean all
 
 run : 
 	@make
-	@./$(NAME) input.csv
-
+	@./$(NAME) input.txt
 .PHONY : all clean fclean re

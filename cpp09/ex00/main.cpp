@@ -43,7 +43,6 @@ int main (int argc, char **argv)
 		return (1);
 	}
 	BitcoinExchange bitcoin(argv[1]);
-	std::cout << std::fixed << std::setprecision(2);
 	// bitcoin.fillInputMap();
 	bitcoin.fillDataMap();
 	bitcoin.performConversion();
