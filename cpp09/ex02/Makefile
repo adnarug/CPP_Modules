@@ -4,7 +4,7 @@ CXX				= c++
 CPPFLAGS		= -Wall -Wextra -std=c++98 -MD -g #-fsanitize=address #-WERRRO!!!
 SRC_FILES		=  main.cpp PmergeMe.cpp
 OBJ_FILES		= $(addprefix obj/,$(notdir $(SRC_FILES:.cpp=.o)))
-NUM_INTS		= 5
+NUM_INTS		= 50
 
 all : $(NAME)
 

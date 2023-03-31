@@ -5,6 +5,7 @@ void leaks()
 {
 	system("leaks btc");
 }
+
 int main (int argc, char **argv)
 {
 	(void)argc;
@@ -19,8 +20,14 @@ int main (int argc, char **argv)
 
 	// leaks(	);
 	PmergeMe me(argv);
+	const std::vector<int> &v = me.getVector();
+	const std::list<int> &l = me.getList();
+
 	std::cout << "sorted list: " << std::endl;
-	std::cout << me.getVector() << std::endl;
+	me.mergeInsertionSort(v);
+	// std::cout << me.getVector() << std::endl;
+	// me.mergeInsertionSort(me.getVector(), 0, me.getVector().size() - 1, 10);
+	// me.mergeInsertionSort(l);
 	// me.insertionSort();
 	return (0);
 }
