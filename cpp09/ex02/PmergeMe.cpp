@@ -10,22 +10,23 @@ PmergeMe::PmergeMe()
 
 PmergeMe::PmergeMe( const PmergeMe & src )
 {
+	*this = src;
 }
 //Error handling
 PmergeMe::PmergeMe(char **argv)
 {
+	std::cout << "Before:  ";
+	std::cout << argv << std::endl;
 	while (*argv)
 	{
 		_list.push_back(std::atoi(*argv));
 		_vector.push_back(std::atoi(*argv));
 		argv++;
 	}
-
-
 }
 
 /*
-** -------------------------------- DESTRUCTOR --------------------------------
+** -------------------------------- DESTRUCTOR -------------------------------
 */
 
 PmergeMe::~PmergeMe()
@@ -39,54 +40,59 @@ PmergeMe::~PmergeMe()
 
 PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->_list = rhs._list;
+		this->_vector = rhs._vector;
+	}
 	return *this;
 }
-
-std::ostream &			operator<<( std::ostream & o, PmergeMe const & i )
+std::ostream &			operator<<( std::ostream & o, std::vector<int>  i )
 {
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-//Function performs merge sort on the list
-
-// Merge function for merging two sorted arrays
-
-
-//assignement overload to print a vector with itarator
-std::ostream &			operator<<( std::ostream & o, std::vector<int> const & i )
-{
-	for (std::vector<int>::const_iterator it = i.begin(); it != i.end(); it++)
+	for (std::vector<int>::const_iterator it = ++i.begin(); it != i.end(); it++)
 	{
 		o << *it << ' ';
 	}
 	return o;
 }
 
+std::ostream &			operator<<( std::ostream & o, std::list<int>  i )
+{
+
+	for (std::list<int>::const_iterator it = ++i.begin(); it != i.end(); it++)
+	{
+		o << *it << ' ';
+	}
+	return o;
+}
+
+std::ostream & 			operator<<( std::ostream & o, char **argv )
+{
+	argv++;
+	while (*argv)
+	{
+		o << *argv << ' ';
+		argv++;
+	}
+	return o;
+}
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::list<int> PmergeMe::getList() const
+std::list<int> & PmergeMe::getList()
 {
 	return _list;
 }
 
-std::vector<int> PmergeMe::getVector() const
+std::vector<int> & PmergeMe::getVector()
 {
 	return _vector;
 }
 
-int PmergeMe::getK() const
-{
-	return _k;
-}
 /* ************************************************************************** */

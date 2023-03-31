@@ -8,6 +8,7 @@ int main (int argc, char **argv)
 		std::cerr << "Error\nInvalid number of arguments" << std::endl;
 		return (1);
 	}
+	(void)argc;
 	RPN rpn(argv[1]);
 	rpn.performExpression();
 	return (0);

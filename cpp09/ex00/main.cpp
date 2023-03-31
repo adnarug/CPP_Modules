@@ -12,6 +12,7 @@ int main (int argc, char **argv)
 		std::cerr << "Error\nInvalid file input" << std::endl;
 		return (1);
 	}
+	(void)argc;
 	BitcoinExchange bitcoin(argv[1]);
 	bitcoin.performConversion();
 	leaks(	);

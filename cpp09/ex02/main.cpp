@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 #include <iostream>
+#include <ctime>
+#define SEC_TO_MICRS 1000000
 
 void leaks()
 {
@@ -8,10 +10,11 @@ void leaks()
 
 int main (int argc, char **argv)
 {
-	(void)argc;
+	clock_t start, end;
+	double time_used_vector;
+	double time_used_list;
+
 	//print all the arguments
-	for (int i = 1; i < argc; i++)
-		std::cout << argv[i] << ' ';
 	// if (argc != 2)
 	// {
 	// 	std::cerr << "Error\nInvalid file input" << std::endl;
@@ -20,14 +23,20 @@ int main (int argc, char **argv)
 
 	// leaks(	);
 	PmergeMe me(argv);
-	const std::vector<int> &v = me.getVector();
-	const std::list<int> &l = me.getList();
-
-	std::cout << "sorted list: " << std::endl;
+	std::vector<int> v = me.getVector();
+	std::list<int> l = me.getList();
+	start = clock();
 	me.mergeInsertionSort(v);
-	// std::cout << me.getVector() << std::endl;
-	// me.mergeInsertionSort(me.getVector(), 0, me.getVector().size() - 1, 10);
-	// me.mergeInsertionSort(l);
-	// me.insertionSort();
+	end = clock();
+	time_used_vector = ((double) (end - start)) / CLOCKS_PER_SEC;
+	start = clock();
+	me.mergeInsertionSort(l);
+	end = clock();
+	time_used_list = ((double) (end - start)) / CLOCKS_PER_SEC;
+	std::cout << "After:   " << v << std::endl;
+	std::cout << "After:   " << l << std::endl;
+	std::cout << "Time to process a range of " << argc - 1  << " elements using a std::vector: " << time_used_vector * SEC_TO_MICRS << " ms" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1<< " elements using a std::list: " << time_used_list * SEC_TO_MICRS << " ms" << std::endl;
+
 	return (0);
 }

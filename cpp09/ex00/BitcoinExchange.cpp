@@ -108,7 +108,7 @@ void BitcoinExchange::performConversion()
 	Date			date;
 	float			value;
 	std::string		line;
-	std::ifstream	fsInput(this->getInputFile());
+	std::ifstream	fsInput(this->getInputFile().c_str());
 	if (fsInput.is_open() && fsInput.good())
 	{
 		fsInput >> std::ws;
@@ -193,7 +193,7 @@ void	BitcoinExchange::checkFiles()
 	std::ifstream ifsInput;
 	std::ifstream ifsData;
 
-	ifsInput.open(this->getInputFile());
+	ifsInput.open(this->getInputFile().c_str());
 	if (!ifsInput.is_open())
 	{
 		std::cerr << "Error\nUnable to open the input file" << std::endl;
