@@ -14,14 +14,6 @@ int main (int argc, char **argv)
 	double time_used_vector;
 	double time_used_list;
 
-	//print all the arguments
-	// if (argc != 2)
-	// {
-	// 	std::cerr << "Error\nInvalid file input" << std::endl;
-	// 	return (1);
-	// }
-
-	// leaks(	);
 	PmergeMe me(argv);
 	std::vector<int> v = me.getVector();
 	std::list<int> l = me.getList();

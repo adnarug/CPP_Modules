@@ -12,9 +12,32 @@ PmergeMe::PmergeMe( const PmergeMe & src )
 {
 	*this = src;
 }
-//Error handling
+//Error handling - check that every element is a positive integer, less than Max Int, without any letters or symbols and without using atoi
 PmergeMe::PmergeMe(char **argv)
 {
+	for (int i = 1; argv[i]; i++)
+	{
+		if (argv[i] == NULL)
+			break;
+		for (int j = 0; argv[i][j]; j++)
+		{
+		if (!std::isdigit(argv[i][j]))
+		{
+			std::cout << "Error: Invalid input" << std::endl;
+			exit(1);
+		}
+		}
+		for (std::atoi(argv[i]); std::atoi(argv[i]) > std::numeric_limits<int>::max();)
+		{
+			std::cout << "Error: Invalid input" << std::endl;
+			exit(1);
+		}
+		if (std::atoi(argv[i]) <= 0)
+		{
+			std::cout << "Error: Invalid input" << std::endl;
+			exit(1);
+		}
+	}
 	std::cout << "Before:  ";
 	std::cout << argv << std::endl;
 	while (*argv)
